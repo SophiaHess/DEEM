@@ -28,4 +28,4 @@ To execute any of the scripts, you need to go to the specific folder and specify
 ````
 python SCRIPTNAME.py -f PATHTOCONFIG.ini
 ````
-Further detailed explanations can be found in the `README.md`.
+Further detailed explanations can be found in the `README.md` of each folder.
