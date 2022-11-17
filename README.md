@@ -1,4 +1,4 @@
-# Dynamic entrepreneurial ecosystem monitoring (DEEM)
+# Dynamic Entrepreneurial Ecosystem Monitoring (DEEM)
 
 This repository contains scripts to create a dataset for entrepreneurial ecosystem research as explained in the work [Dynamic entrepreneurial ecosystem monitoring: 
 A toolkit for dataset creation] by Sophia Hess.
