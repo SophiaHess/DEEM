@@ -10,7 +10,14 @@ By sharing this repository, we aim to provide a toolset on how to build and main
 3) LinkedIn Enrichment Founder-level: LinkedIn url, work experience, skills, highest level of education, PhD
 
 ## Requirements
-All scripts are written in Python and we have provided all required libraries to run our scripts in the environment.yml file. You can recreate our virtual environment to run the scripts on your computer using Anaconda ([Installation guide](https://docs.anaconda.com/anaconda/install/index.html)).
+All scripts are written in Python and we have provided all required libraries to run our scripts in the environment.yml file. You can recreate our virtual environment to run the scripts on your computer using Anaconda ([Installation guide](https://docs.anaconda.com/anaconda/install/index.html)). To regenerate the virtual environment use the following command:
+````
+conda env create -f environment.yml
+````
+After recreating be sure to activate the environment. 
+````
+conda activate deem
+````
 
 ## Create your own dataset
 Text
