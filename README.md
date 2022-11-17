@@ -9,11 +9,8 @@ By sharing this repository, we aim to provide a toolset on how to build and main
 2) LinkedIn Enrichment Firm-level: LinkedIn url, website, about us, company size, founding year, no. of employees, main university employees, industry
 3) LinkedIn Enrichment Founder-level: LinkedIn url, work experience, skills, highest level of education, PhD
 
-## Input file
-Text
+## Requirements
+All scripts are written in Python and we have provided all required libraries to run our scripts in the environment.yml file. You can recreate our virtual environment to run the scripts on your computer using Anaconda ([Installation guide](https://docs.anaconda.com/anaconda/install/index.html)).
 
-## Output file
-Text
-
-## Replication
+## Create your own dataset
 Text
