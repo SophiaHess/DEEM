@@ -22,6 +22,10 @@ After recreating be sure to activate the environment.
 ````
 conda activate deem
 ````
+Make sure you install the database dependencies needed for your project. In our example case using Airtable, we install:
+````
+pip install pyairtable==1.2.0
+````
 
 ## Create your own dataset
 To execute any of the scripts, you need to go to the specific folder and specify all your parameters (e.g., API keys) in the `.config` file. Example.in provides the expected config file structure (e.g., required API keys). To run each script you can modify the following command:
