@@ -1,7 +1,10 @@
 from os.path import dirname, basename, isfile
-from .person import Person
-from .objects import Institution, Experience, Education, Contact
-from .company import Company
+
+import os
+import sys
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(SCRIPT_DIR)
 
 __version__ = "2.9.0"
 
