@@ -30,16 +30,16 @@ def login(driver, email=None, password=None, cookie=None, timeout=10):
     driver.get("https://www.linkedin.com/login")
     element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "username")))
 
-    email_elem = driver.find_element_by_id("username")
+    email_elem = driver.find_element(By.ID,"username")
     email_elem.send_keys(email)
 
-    password_elem = driver.find_element_by_id("password")
+    password_elem = driver.find_element(By.ID, "password")
     password_elem.send_keys(password)
     password_elem.submit()
 
     try:
         if driver.url == 'https://www.linkedin.com/checkpoint/lg/login-submit':
-            remember = driver.find_element_by_id(c.REMEMBER_PROMPT)
+            remember = driver.find_element(By.ID,c.REMEMBER_PROMPT)
             if remember:
                 remember.submit()
 
@@ -73,11 +73,13 @@ def search_for_company(name, driver):
     )
 
     # get first result item
-    results_container = driver.find_element_by_class_name('search-results-container')
-    results = results_container.find_elements_by_class_name('entity-result__title-text')  # Todo check after ui change
+    results_container = WebDriverWait(driver, 3).until(
+        EC.presence_of_element_located((By.CLASS_NAME, 'search-results-container')))
+    #results_container = driver.find_element_by_class_name('search-results-container')
+    results = results_container.find_elements(By.CLASS_NAME, 'entity-result__title-text')  # Todo check after ui change
     result = next(iter(results or []), None)  # we are only looking at first serchresult for company name
     if result is not None:
-        link = result.find_element_by_tag_name('a').get_attribute('href')
+        link = result.find_element(By.TAG_NAME, 'a').get_attribute('href')
         return link
     else:
         # no results where found

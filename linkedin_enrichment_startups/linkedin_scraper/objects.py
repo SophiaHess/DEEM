@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 import selenium.common.exceptions as selenium_exeptions
 from selenium.webdriver import Chrome
 
-from . import constants as c
+import constants as c
 
 
 @dataclass
@@ -30,6 +30,7 @@ class Experience(Institution):
     timeline_text: str = None
     duration_years: float = 0
     duration_margin: float = 0
+    text_description: str = None
 
 @dataclass
 class Education(Institution):
@@ -39,6 +40,18 @@ class Education(Institution):
     timeline_text: str = None
     duration_years: float = 0
     duration_margin: float = 0
+    text_description: str = None
+
+
+@dataclass
+class Volunteer(Institution):
+    from_date: str = None
+    to_date: str = None
+    field: str = None
+    position_title: str = None
+    duration_years: float = 0
+    duration_margin: float = 0
+
 
 @dataclass
 class Interest(Institution):
@@ -66,7 +79,7 @@ class Scraper:
 
     def __find_element_by_class_name__(self, class_name):
         try:
-            self.driver.find_element_by_class_name(class_name)
+            self.driver.find_element(By.CLASS_NAME, class_name)
             return True
         except:
             pass
@@ -74,7 +87,7 @@ class Scraper:
 
     def __find_element_by_xpath__(self, tag_name):
         try:
-            self.driver.find_element_by_xpath(tag_name)
+            self.driver.find_element(By.XPATH, tag_name)
             return True
         except:
             pass
@@ -82,7 +95,7 @@ class Scraper:
 
     def __find_enabled_element_by_xpath__(self, tag_name):
         try:
-            elem = self.driver.find_element_by_xpath(tag_name)
+            elem = self.driver.find_element(By.XPATH, tag_name)
             return elem.is_enabled()
         except:
             pass
