@@ -11,7 +11,7 @@ To execute the script, make sure the recommended environment is activated, or yo
 When starting the script, you need to pass the path to the config file, that contains all necessary information such as LinkedIn login credentials
 An example config file can be found in `.config`.
 
-## Run startup_linkedin_searc.py 
+## Run startup_linkedin_search.py 
 Preparation Steps
 - As a basic requirement you need to activate a LinkedIn account. Specify your login credentials in the `.config` file.
 - Run the script by passing your config file after the `-f` flag
