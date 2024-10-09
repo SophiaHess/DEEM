@@ -19,7 +19,8 @@ An example config file can be found in `.config`. To execute the script, use the
 ## Preparation Steps
 Before you are able to execute the code you need to prepare the following:
 1. **Connect to your database**
-   - in the example script 'Airtable' is the database used (find more information about [Airtable](https://www.airtable.com/))
+   - in the example script we usecsv files
+   - one potential database to use is 'Airtable': (find more information about [Airtable](https://www.airtable.com/)) ($PAID OPTION)
    - you can use whatever database is suitable for your project
 3. **Get api key for Netestate or other imprint crawling services**
    - [Netestate](https://www.netestate.de/) ($PAID OPTION)
