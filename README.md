@@ -1,6 +1,6 @@
 # Dynamic Entrepreneurial Ecosystem Monitoring (DEEM)
 
-This repository contains scripts to create a dataset for entrepreneurial ecosystem (EE) research as explained in the work [Empirical Entrepreneurial Ecosystem Research: A Guide to Creating Multilevel Datasets] by Sophia Hess.
+This repository contains scripts to create a dataset for entrepreneurial ecosystem (EE) research as explained in the work [*Empirical Entrepreneurial Ecosystem Research: A Guide to Creating Multilevel Datasets*] by Sophia Hess.
 
 The guide to creating multilevel EE datasets includes four consecutive steps: data collection, enrichment, validation, and monitoring. 
 
