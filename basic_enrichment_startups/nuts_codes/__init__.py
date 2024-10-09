@@ -5,7 +5,11 @@ import os
 #######################################
 # change: link your postal/nuts correspondence file
 # create relative path to correspondence csv from this file always
-corr_path = os.path.join(os.path.dirname(__file__), 'pc2020_DE_NUTS-2021_v3.0.csv')
+
+# download the current nuts3-zip code dataset from eurostat (https://gisco-services.ec.europa.eu/tercet/flat-files) and insert path to csv here.
+
+corr_path = os.path.join(os.path.dirname(__file__), 'PATH TO CSV')
+
 #######################################
 # read in correspondence table from csv file
 corr = pd.read_csv(corr_path, sep=';', dtype={'CODE': object})
