@@ -9,7 +9,6 @@ import numpy as np
 import pandas as pd
 from ast import literal_eval
 from tqdm import tqdm
-from pyairtable import Table
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -18,10 +17,9 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 sys.path.append(os.path.dirname(os.path.dirname(SCRIPT_DIR)))
 
-
 from linkedin_scraper import actions
 from linkedin_scraper.company import Company
-from functions import dataframe_to_airtable_update, parse_args, remove_linebreaks, airtable_to_dataframe, ensure_lable_in_multiselect
+from functions import parse_args, remove_linebreaks, ensure_lable_in_multiselect
 
 
 def use_linkedin_scraper(row, driver, error_file, return_columns):
@@ -79,14 +77,6 @@ if __name__ == '__main__':
         print('unknown file type of input file.')
         sys.exit()
 
-    # table = Table(config.get('Airtable', 'at_pat_token'),
-    #               base_id=config.get('Airtable', 'at_base_id'),
-    #               table_name=config.get('LI_Startups', 'at_table_name'))
-    # # select only columns that are needed
-    # cols = ['startup_name', 'record_id', 'startup_linkedin_url', 'startup_website_merged', 'data_source', 'website_from_linkedin', 'validation_linkedin']
-    # # get data from airtable Todo
-    # df_raw = airtable_to_dataframe(table, 'for_update_processing', cols)
-
 
     # fill startup_website_merged with website from airtable if empty
     df_raw['startup_website_merged'] = df_raw['startup_website_merged'].fillna(df_raw['website_from_linkedin'])
@@ -111,9 +101,10 @@ if __name__ == '__main__':
     options.add_argument('log-level=3')
 
     # start cromedriver and login to Linkedin
-    service = Service(executable_path=r"../../chromedriver/chromedriver.exe")
+    # CAUTION: download the latest version of the Google Chrome Driver before executing this step: https://getwebdriver.com/chromedriver
+    # driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    service = Service(executable_path=r"../'PUT THE PATH TO YOUR CHROMEDRIVER'/chromedriver.exe")
     driver = webdriver.Chrome(service=service)
-    #driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     actions.login(driver, email=config.get('Linkedin', 'li_user'), password=config.get('Linkedin', 'li_pass'))
 
     # scrape each startup in dataframe
@@ -151,34 +142,4 @@ if __name__ == '__main__':
 
     ################################################################
     dataframe.to_csv(f'../output/{current_date.strftime("%Y%m%d")}_startup_linkedin_extraction.csv')
-    ################################################################
-    # change: connect to your database
-    # this is an example for airtable
-    # uploading results do airtable
-    print('file completed. preparing for airtable upload')
-    print('uploading scraping results...')
-    table = Table(config.get('Airtable', 'at_pat_token'),
-                  base_id=config.get('Airtable', 'at_base_id'),
-                  table_name=config.get('LI_Startups', 'at_table_name'))
-    cols_upload = col_list + ['validation_linkedin', 'startup_linkedin_url', 'data_source', 'startup_website_merged', 'website_from_linkedin']
-
-    check = dataframe_to_airtable_update(dataframe, cols_upload, table)
-    if check:
-        print('scraping upload successfull')
-    else:
-        print('upload to airtable failed')
-        print('saving dataframe as csv:')
-        dataframe.to_csv(f'../output/{current_date.strftime("%Y%m%d")}_startup_linkedin_extraction.csv', mode='a')
-
-    # uploading hand check labels for all that are not passed
-    print('uploading failed check labels...')
-    check_failed = df_raw.loc[~df_raw['process']]
-    check = dataframe_to_airtable_update(check_failed, ['validation_linkedin'], table)
-    if check:
-        print('uploading failed check labels successful')
-    else:
-        print('uploading failed check labels failed!')
-
-    dataframe.to_csv(f'../output/{current_date.strftime("%Y%m%d")}_startup_linkedin_extraction.csv')
-    # check_failed.to_csv(f'../output/{current_date.strftime("%Y%m%d")}_check_failed.csv')
     ################################################################
