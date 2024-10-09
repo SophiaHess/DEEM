@@ -28,7 +28,7 @@ Before you are able to execute the code you need to prepare the following:
    - to access open street maps you need a client
    - create yourself a client and specify it in the `.config` file
 5. **Download postal code - NUTS3 code csv from Eurostat**
-   - [Download link Eurostat](https://ec.europa.eu/eurostat/web/nuts/correspondence-tables/postcodes-and-nuts)
+   - [Download link Eurostat](https://gisco-services.ec.europa.eu/tercet/flat-files)
    - More information about NUTS encoding and APIs are accessible [here](https://gisco-services.ec.europa.eu/distribution/v2/nuts/download/)
 
 ## Columns database required
