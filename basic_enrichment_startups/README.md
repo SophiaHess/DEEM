@@ -1,4 +1,4 @@
-# Basic Data Enrichment Startups: Website Status Check, Imprint Information, Geolocations, NUTS-ID
+# Data Enrichment Startups - Basic: Website Status Check, Imprint Information, Geolocations, NUTS-ID
 
 The script in this folder contains the following steps for data enrichment and executes them in the given order:
 1. **Website Status Check** 
