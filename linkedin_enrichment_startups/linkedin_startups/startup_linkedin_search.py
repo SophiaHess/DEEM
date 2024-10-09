@@ -6,7 +6,6 @@ import traceback
 
 import numpy as np
 import pandas as pd
-from pyairtable import Table
 from tqdm import tqdm
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -19,7 +18,6 @@ from linkedin_scraper import actions
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from functions import airtable_to_dataframe, parse_args
 
 if __name__ == '__main__':
     # parse arguments from command line
@@ -32,19 +30,13 @@ if __name__ == '__main__':
     tqdm.pandas()
 
     ################################################################
-    # change: connect to your database
-    # this is an example for airtable
-    # create startup dataframe from airtable view
-    print('retrieving startup data from airtable and saving in dataframe')
-    table = Table(config.get('Airtable', 'at_pat_token'),
-                  base_id=config.get('Airtable', 'at_base_id'),
-                  table_name=config.get('LI_Startups', 'at_table_name'))
+    # input data from csv with the columns
+    # OR: connect to your database:
     # select only columns that are needed
     col_list = ['startup_name', 'record_id', 'startup_linkedin_url', 'startup_website_merged', 'data_source']
-    # get data from airtable Todo
-    dataframe = airtable_to_dataframe(table, config.get('LI_Startups', 'at_view_name'), fields=col_list)
-    # import csv when script has failed after already finding linkedin profiles
-    # dataframe = pd.read_csv("../output/20230718_linkedin_company_search_results.csv")
+    
+    # import csv with the col_list columns
+    # dataframe = pd.read_csv("../output/linkedin_search.csv")
     # ensure dataframe has all necessary columns
     for column in col_list:
         if column not in dataframe.columns:
@@ -58,8 +50,10 @@ if __name__ == '__main__':
 
     # start chrome driver
     print('starting chrome driver')
+
+    # CAUTION: download the latest version of the Google Chrome Driver before executing this step: https://getwebdriver.com/chromedriver
     # driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-    service = Service(executable_path=r"../../chromedriver/chromedriver.exe")
+    service = Service(executable_path=r"../'PUT THE PATH TO YOUR CHROMEDRIVER'/chromedriver.exe")
     driver = webdriver.Chrome(service=service)
 
     try:
