@@ -33,10 +33,9 @@ if __name__ == '__main__':
         'record_id',
         'startup_website'
     ]
-    table = Table(config.get('Database', 'api_key'),
-                  base_id=config.get('Database', 'base_id'),
-                  table_name=config.get('Database', 'table_name'))
-    startup_data = airtable_to_dataframe(table, config.get('Database', 'view'), fields=load_cols)
+
+    # read from csv
+    startup_data = pd.read_csv('./output/data_basic_enrichment.csv')
     ################################################################
 
     print('resulting dataframe:')
