@@ -1,17 +1,20 @@
 # Dynamic Entrepreneurial Ecosystem Monitoring (DEEM)
 
-This repository contains scripts to create a dataset for entrepreneurial ecosystem research as explained in the work [Dynamic entrepreneurial ecosystem monitoring: 
-A toolkit for dataset creation] by Sophia Hess.
+This repository contains scripts to create a dataset for entrepreneurial ecosystem (EE) research as explained in the work [Empirical Entrepreneurial Ecosystem Research: A Guide to Creating Multilevel Datasets] by Sophia Hess.
 
-The provided scripts cover the following: 
+The guide to creating multilevel EE datasets includes four consecutive steps: data collection, enrichment, validation, and monitoring. 
+
+The provided scripts mainly cover the process steps for data enrichment:
 - **Basic Enrichment:** website activity check, headquarter address, geolocation, nuts encoding
 - **LinkedIn Enrichment Firm-level:** LinkedIn url, website, about us, company size, founding year, no. of employees, main university employees, industry
 - **LinkedIn Enrichment Founder-level:** LinkedIn url, work experience, skills, highest level of education, PhD
 
-Minimum requirement: firm website *AND/OR* LinkedIn profile.
+Initial guidance for validation procedures are also provided. 
+
+**Minimum requirement:** firm website *AND/OR* LinkedIn profile.
 
 ## Motivation
-By sharing this repository, we aim to provide a toolset on how to build and maintain a traceable and updated dataset for entrepreneurial ecosystem research, using puplicly available data. We combine different data sources to detect startups at a very early stage, follow the startup cohort over time, and to create a comprehensive dataset that allows us to apply AI models in the future. We encourage fellow scholars to create similar datasets in other contexts, allowing for panel studies, applying comparable entrepreneurial ecosystem measures and advancing the research program by providing more data-centric approaches to study the entrepreneurial ecosystem phenomenon.
+By sharing this repository, we aim to provide a guide on how to build and maintain a traceable and updated datasets for multilevel EE research, using puplicly available data. We combine different data sources to detect startups at a very early stage, follow the startup cohort over time, and create a comprehensive dataset that allows us for longitudinal studies and applying AI models in the future. We encourage fellow scholars to create similar datasets in other contexts to empirically study the EE phenomenon and to provide data for evidence-based policy design, implementation, and evaluation.
 
 ## Dependencies
 All scripts are written in Python and we have provided all required libraries to run our scripts in the environment.yml file. You can recreate our virtual environment to run the scripts on your computer using Anaconda ([Installation guide](https://docs.anaconda.com/anaconda/install/index.html)). To regenerate the virtual environment use the following command:
