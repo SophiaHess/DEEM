@@ -6,8 +6,8 @@ The guide to creating multilevel EE datasets includes four consecutive steps: da
 
 The provided scripts mainly cover the process steps for data enrichment:
 - **Basic Enrichment:** website activity check, headquarter address, geolocation, nuts encoding
-- **LinkedIn Enrichment Firm-level:** LinkedIn url, website, about us, company size, founding year, no. of employees, main university employees, industry
-- **LinkedIn Enrichment Founder-level:** LinkedIn url, work experience, skills, highest level of education, PhD
+- **LinkedIn Enrichment Firm-level:** LinkedIn url, website, about us, company size, founding year, no. of employees, industry
+- **LinkedIn Enrichment Founder-level:** LinkedIn url, education background, work experience, skills
 
 Initial guidance for validation procedures are also provided. 
 
