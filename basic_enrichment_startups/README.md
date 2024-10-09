@@ -1,4 +1,4 @@
-# Data Enrichment Startups - Basic: 
+# Data Enrichment Basic Firm-level
 
 The script in this folder contains the following steps for basic data enrichment on the firm-level: Website Status Check, Imprint Information, Geolocations, NUTS-ID, and executes them in the given order:
 
