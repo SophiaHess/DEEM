@@ -14,4 +14,5 @@ The script works with csv input and output.
 5) founding year
 6) description
 
-*Duplicate checks are dependent on the database used and can individually be set up. The same applies to data harmonization procedures. Be aware that data validation is done semi-automated and will also require manual checks of the data.*
+**CAUTION:**
+Duplicate checks are dependent on the database used and can individually be set up. The same applies to data harmonization procedures. Be aware that data validation is done semi-automated and will also require manual checks of the data.
