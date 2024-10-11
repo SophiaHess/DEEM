@@ -17,7 +17,8 @@ from linkedin_scraper.company import get_website_from_linkedin
 from linkedin_scraper import actions
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+
+from functions import parse_args
 
 if __name__ == '__main__':
     # parse arguments from command line
@@ -36,7 +37,7 @@ if __name__ == '__main__':
     col_list = ['startup_name', 'record_id', 'startup_linkedin_url', 'startup_website_merged', 'data_source']
     
     # import csv with the col_list columns
-    # dataframe = pd.read_csv("../output/linkedin_search.csv")
+    dataframe = pd.read_csv("../output/linkedin_search.csv")
     # ensure dataframe has all necessary columns
     for column in col_list:
         if column not in dataframe.columns:
