@@ -2,9 +2,6 @@ import pandas as pd
 import requests
 import os
 import sys
-import math
-import numpy as np
-import re
 import csv
 from urllib.parse import urlparse
 import time
