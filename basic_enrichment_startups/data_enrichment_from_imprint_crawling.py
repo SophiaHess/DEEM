@@ -1,15 +1,15 @@
 import configparser
 import traceback
-from pyairtable import Table
 import time
 import datetime
 import os
 import sys
+import pandas as pd
 from website_status_description import get_status_for_urls
 from imprint_api import crawl_startups_imprint
 from geolocation_extractor import get_geolocations_for_startups
 import nuts_codes as nc
-from functions import parse_args, airtable_to_dataframe, dataframe_to_airtable_update
+from functions import parse_args
 
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -35,7 +35,7 @@ if __name__ == '__main__':
     ]
 
     # read from csv
-    startup_data = pd.read_csv('./output/data_basic_enrichment.csv')
+    startup_data = pd.read_csv('./output/data_enrichment_basic.csv')
     ################################################################
 
     print('resulting dataframe:')
@@ -98,19 +98,7 @@ if __name__ == '__main__':
         print(traceback.format_exc())
 
     ################################################################
-    # change: connect to your database
     # update your database
-    # example for an airtable database
-    print('--------------------')
-    print('starting upload to database:')
-    # check will be true if upload was successfull
-    check = dataframe_to_airtable_update(startup_data, update_cols, table)
-    if check:
-        print('upload finished successfully')
-    else:
-        print('upload to database failed.')
-        print('saving dataframe as csv:')
-        # get current date for file output
-        current_date = datetime.date.today()
-        startup_data.to_csv(f'./output/{current_date.strftime("%Y%m%d")}_data_enrichment_basic_output.csv')
+    current_date = datetime.date.today()
+    startup_data.to_csv(f'./output/{current_date.strftime("%Y%m%d")}_data_enrichment_basic_output.csv')
     ################################################################
