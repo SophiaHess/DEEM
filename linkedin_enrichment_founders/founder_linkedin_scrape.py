@@ -15,9 +15,9 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 sys.path.append(os.path.dirname(os.path.dirname(SCRIPT_DIR)))
 
-from linkedin_scraper.person import Person
-import linkedin_scraper.actions as actions
-from functions import airtable_to_dataframe, parse_args, airtable_update_single_record
+from linkedin_enrichment_startups.linkedin_scraper.person import Person
+import linkedin_enrichment_startups.linkedin_scraper.actions as actions
+from functions import parse_args, airtable_update_single_record
 from founders.helpers import clean_linkedin_url, get_combined_name
 
 def start_chrome_driver():
@@ -52,7 +52,7 @@ def create_error_file():
     # save current date for filename of error file
     current_date = datetime.date.today()
     # open file for error messages
-    error_file_path = f'./linkedin/output/{current_date.strftime("%Y%m%d")}_founder_scraping_errors.json'
+    error_file_path = f'./output/{current_date.strftime("%Y%m%d")}_founder_scraping_errors.json'
     error_file = open(error_file_path, 'a', encoding='utf-8')
     
 
@@ -172,8 +172,8 @@ if __name__ == '__main__':
     founders_col_list = ['founder_record_id', 'founder_linkedin_url', 'founder_startups', 'startup_name (from founder_startups)', 'startup_linkedin_url (from founder_startups)', 'founder_first_name', 'founder_last_name']
     
     # get complete founders dataframe (we'll need to search the entire set for employees)
-    to_scrape_founders_df = airtable_to_dataframe(founders_table, config.get('Founders', 'for_scraping'), fields=founders_col_list)
-
+    # import csv with the founders_col_list columns
+    to_scrape_founders_df = pd.read_csv("./output/founders_search.csv")
 
     
     driver = start_chrome_driver() 
