@@ -17,9 +17,15 @@ Initial guidance for validation procedures are also provided.
 By sharing this repository, we aim to provide a guide on how to build and maintain a traceable and updated datasets for multilevel EE research, using puplicly available data. We combine different data sources to detect startups at a very early stage, follow the startup cohort over time, and create a comprehensive dataset that allows us for longitudinal studies and applying AI models in the future. We encourage fellow scholars to create similar datasets in other contexts to empirically study the EE phenomenon and to provide data for evidence-based policy design, implementation, and evaluation.
 
 ## Dependencies
-All scripts are written in Python and we have provided all required libraries to run our scripts in the environment.yml file. You can recreate our virtual environment to run the scripts on your computer using Anaconda ([Installation guide](https://docs.anaconda.com/anaconda/install/index.html)). To regenerate the virtual environment use the following command:
+All scripts are written in Python and we have provided all required libraries to run our scripts in win_environment.yml file for windows operating system users and mac_environment.yml file for mac users. You can recreate our virtual environment to run the scripts on your computer using Anaconda ([Installation guide](https://docs.anaconda.com/anaconda/install/index.html)). To regenerate the virtual environment use the following command:
+
+**For windows users:**
 ````
-conda env create -f environment.yml
+conda env create -f win_environment.yml
+`````
+**For Mac users:**
+````
+conda env create -f mac_environment.yml
 ````
 After recreating be sure to activate the environment. 
 ````
