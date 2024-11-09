@@ -25,7 +25,7 @@ Before you are able to execute the code you need to prepare the following:
    - you can use whatever database is suitable for your project
 3. **Get api key for Netestate or other imprint crawling services**
    - [Netestate](https://www.netestate.de/) ($PAID OPTION)
-   - you can use any imprint crawling service or build your own one
+   - you can use any imprint crawling service
 4. **Get your personal client for open street maps and specify it in config**
    - to access open street maps you need a client
    - create yourself a client and specify it in the `.config` file
