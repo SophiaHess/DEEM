@@ -12,8 +12,6 @@ When starting the script, you need to pass the path to the config file, that con
 An example config file can be found in `.config`.
 
 ## Run startup_linkedin_search.py 
-Preparation Steps
-- As a basic requirement you need to activate a LinkedIn account. Specify your login credentials in the `.config` file.
 - Run the script by passing your config file after the `-f` flag
 ````
 python ./startup_linkedin_search.py -f ../../.config/example.ini
