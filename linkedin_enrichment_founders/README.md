@@ -13,11 +13,8 @@ To execute the scripts, make sure the recommended environment is activated, or y
 ## Scraping
 The startup scraping process is run with the script **founders_linkedin_scrape.py**
 
-The scraping script uses linkedin urls from Airtable and uploads data into Airtable as it scrapes. 
-
-1. Create a config file containing all the necessary information for both scripts. An example that contains all the necessary fields can be found in `.config/example.ini`. E.g, in the config file we define the LinkedIn login details and the airtable base/table/view details.
-2. Use the filters in the specified airtable view to define which founders you want to scrape.
-3. Run the script by passing your config file after the `-f` flag 
+The scraping script uses linkedin urls from csv and uploads data into csv as it scrapes. 
+Run the script by passing your config file after the `-f` flag 
 ````
 python ./founders_linkedin_scrape.py -f ../../.config/example.ini
 ````
