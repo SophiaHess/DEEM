@@ -14,7 +14,8 @@ corr_path = os.path.join(os.path.dirname(__file__), 'PATH TO CSV')
 # read in correspondence table from csv file
 corr = pd.read_csv(corr_path, sep=';', dtype={'CODE': object})
 # change postal code to string to avoid problems
-corr['CODE'] = corr['CODE'].astype(str)
+corr['NUTS3'] = corr['NUTS3'].str.strip("'")
+corr['CODE'] = corr['CODE'].str.strip("'")
 
 
 def get_nuts3(postal):

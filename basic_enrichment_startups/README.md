@@ -1,8 +1,10 @@
 # Data Enrichment Basic Firm-level
 
-The script in this folder contains the following steps for basic data enrichment on the firm-level: Website Status Check, Imprint Information, Geolocations, NUTS-ID, and executes them in the given order:
+This folder contains a set of scripts for basic data enrichment on the firm level, including Website Status Check, Imprint Information, Geolocation, and NUTS-ID extraction. These steps are executed in sequence to enhance the dataset with valuable location and status information for each firm.
 
-1. **Website Status Check** 
+**Enrichment Steps**
+
+1. **Website Status Check**
    - head request to check if a website is available
 2. **Imprint Crawling with Netestate**
    - api request for available websites
@@ -15,8 +17,15 @@ To execute the script, make sure the recommended environment is activated, or yo
 When starting the script, you need to pass the path to the config file, that contains all necessary information such as api keys.
 An example config file can be found in `.config`. To execute the script, use the following command:
 ````
-.\data_enrichment_from_imprint_crawling.py -f .\.config\example.config
+.\data_enrichment_from_imprint_crawling.py -f ..\.config\example.ini
 ````
+
+**Script for Scraping Website Descriptions**
+
+Additionally, a data processing script enhances the enrichment data by scraping startup website descriptions and preparing them for further analysis. This script reads a configuration file and a CSV containing URLs.
+
+The output includes cleaned, translated descriptions saved in a CSV.
+
 ## Preparation Steps
 Before you are able to execute the code you need to prepare the following:
 1. **Connect to your database**
