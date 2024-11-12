@@ -14,7 +14,7 @@ An example config file can be found in `.config`.
 ## Run startup_linkedin_search.py 
 - Run the script by passing your config file after the `-f` flag
 ````
-python ./startup_linkedin_search.py -f ../../.config/example.ini
+.\startup_linkedin_search.py -f ..\..\.config\example.ini
 ````
 
 **CAUTION**: 
@@ -27,7 +27,7 @@ For all LinkedIn URLs you have drawn directly via the LinkedIn search you need t
 ## Run startup_linkedin_scraper.py with the valid LinkedIn URLs
 Pass your config file after `-f`
 ````
-python ./startup_linkedin_scraper.py -f ../../.config/example.ini 
+.\startup_linkedin_scraper.py -f ..\..\.config\example.ini
 ````
 
 ## Minimum information required

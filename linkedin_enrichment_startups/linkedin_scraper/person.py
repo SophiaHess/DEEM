@@ -23,8 +23,8 @@ sys.path.append(os.path.dirname(os.path.dirname(SCRIPT_DIR)))
 import objects
 import dom_selectors
 import exceptions 
-from linkedin_founders.scraping_helpers import *
-from founders.helpers import clean_linkedin_url
+from linkedin_enrichment_founders.founders.scraping_helpers import *
+from linkedin_enrichment_founders.founders.helpers import clean_linkedin_url
 
 
 class Person(objects.Scraper):
