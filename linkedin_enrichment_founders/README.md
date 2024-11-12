@@ -16,7 +16,7 @@ The startup scraping process is run with the script **founders_linkedin_scrape.p
 The scraping script uses linkedin urls from csv and uploads data into csv as it scrapes. 
 Run the script by passing your config file after the `-f` flag 
 ````
-python ./founders_linkedin_scrape.py -f ../../.config/example.ini
+.\founders_linkedin_scrape.py -f ..\..\.config\example.ini
 ````
 
 The script iterates through each person, visits their profile and their sub-pages and scrapes their data.
@@ -25,10 +25,5 @@ After visiting each sub-page (experience, education, skills, awards etc.), the s
 
 ## Processing Scraped Data
 The **founders_processing_notebook_ipynb** script, processes the raw scraped data that was scraped in the previous step.
-
-The config file is also required, for this script:
-````
-python ./founders_linkedin_scrape.py -f ../../.config/example.ini
-````
 
 This script iterates through each persons' scraped data and processes into the structured data columns.

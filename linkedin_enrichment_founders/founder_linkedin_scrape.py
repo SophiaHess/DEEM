@@ -3,9 +3,9 @@ import configparser
 import datetime
 import os
 import sys
+import csv
 import pandas as pd
 import numpy as np
-from pyairtable import Table, utils
 from tqdm import tqdm
 
 from selenium import webdriver
@@ -17,7 +17,7 @@ sys.path.append(os.path.dirname(os.path.dirname(SCRIPT_DIR)))
 
 from linkedin_enrichment_startups.linkedin_scraper.person import Person
 import linkedin_enrichment_startups.linkedin_scraper.actions as actions
-from functions import parse_args, airtable_update_single_record
+from functions import parse_args
 from founders.helpers import clean_linkedin_url, get_combined_name
 
 def start_chrome_driver():
@@ -59,7 +59,7 @@ def create_error_file():
     return error_file
 
 
-def scrape_founder(founders_table, row, driver, error_file=None):
+def scrape_founder(csv_file_path, row, driver, error_file=None):
     """
 
     args:
@@ -70,7 +70,6 @@ def scrape_founder(founders_table, row, driver, error_file=None):
     returns:
     
     """
-    
     # Get link of person to scrape
     link = row['founder_linkedin_url']
     link = clean_linkedin_url(link)
@@ -78,7 +77,7 @@ def scrape_founder(founders_table, row, driver, error_file=None):
     if isinstance(link, float):
         return None
 
-    # Get record id of person being scraped, used after scraping to upload the scraped data back into airtable
+    # Get record id of person being scraped
     record_id = row['founder_record_id']
     
     # Scraping Object is initialised and run
@@ -98,16 +97,16 @@ def scrape_founder(founders_table, row, driver, error_file=None):
         
         # Convert the scraped list of Experience dataclass into a dataframe with each attribute as a column in the dataframe
         experiences_df = pd.DataFrame([t.__dict__ for t in founder.experiences])
-        # Replace NaN values in the dataframe with None (to be able to upload json into airtable)
+        # Replace NaN values in the dataframe with None
         experiences_df = experiences_df.replace({np.nan: None})
-        # Convert dataframe to json representation, to be stored in airtable and so it is able to be read back in.
+        # Convert dataframe to json representation
         upload_dict['scraped_experience'] = experiences_df.to_json()
 
         # Similarly, convert the scraped list of Education dataclass into a dataframe with each object attribute parsed into columns in the dataframe.
         educations_df = pd.DataFrame([t.__dict__ for t in founder.educations])
         # Replace NaN values in the dataframe with None
         educations_df = educations_df.replace({np.nan: None})
-        # Convert dataframe to json representation, to be stored in airtable and so it is able to be read back in.
+        # Convert dataframe to json representation
         upload_dict['scraped_education'] = educations_df.to_json()
 
         upload_dict['scraped_about'] = founder.about
@@ -142,12 +141,19 @@ def scrape_founder(founders_table, row, driver, error_file=None):
 
     # Get today's date to enter as date of scraping
     upload_dict['scraped_date_last_scraped_linkedin'] = datetime.date.isoformat(datetime.date.today())
-    
+    upload_dict['record_id'] = record_id
+    # Check if the CSV file already exists; if not, write headers
+    try:
+        with open(csv_file_path, mode='x', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=upload_dict.keys())
+            writer.writeheader()
+    except FileExistsError:
+        pass  # If the file exists, we don't need to rewrite headers
 
-    # Update single row of the airtable, with the raw scraped data now stored in upload_dict
-    # We upload the scraped data record by record so that if there any unpredictable failures during scraping
-    # then we don't lose any previous information if we were to do it at the end of scraping
-    airtable_update_single_record(founders_table, record_id, upload_dict)
+    # Append data to the CSV file
+    with open(csv_file_path, mode='a', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=upload_dict.keys())
+        writer.writerow(upload_dict)
 
 
 
@@ -163,17 +169,14 @@ if __name__ == '__main__':
 
     # ignore chained assignment warnings because of dataframe copy with relevant columns
     pd.options.mode.chained_assignment = None  # default='warn'
-
-    founders_table = Table(config.get('Airtable', 'at_pat_token'),
-                base_id=config.get('Airtable', 'at_base_id'),
-                table_name=config.get('Founders', 'at_table_name'))
     
     # define columns that are needed in founders dataframe
     founders_col_list = ['founder_record_id', 'founder_linkedin_url', 'founder_startups', 'startup_name (from founder_startups)', 'startup_linkedin_url (from founder_startups)', 'founder_first_name', 'founder_last_name']
-    
-    # get complete founders dataframe (we'll need to search the entire set for employees)
+
     # import csv with the founders_col_list columns
     to_scrape_founders_df = pd.read_csv("./output/founders_search.csv")
+    # Define the output CSV file path
+    csv_file_path = "./output/founders_data.csv"
 
     
     driver = start_chrome_driver() 
@@ -183,7 +186,7 @@ if __name__ == '__main__':
 
 
     to_scrape_founders_df.progress_apply( 
-        lambda row: scrape_founder(founders_table, row, driver, error_file), axis=1, result_type='expand')
+        lambda row: scrape_founder(csv_file_path, row, driver, error_file), axis=1, result_type='expand')
 
     error_file.close()
 
