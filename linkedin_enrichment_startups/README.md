@@ -37,7 +37,7 @@ Pass your config file after `-f`
 2. **LinkedIn Scraping**:
    - `startup_linkedin_url`
 
-## Expected Results
+## Expected results
 The script will extract the following information for startups if available:
 - `main_university_employees_linkedin`: indicates which university most employees have studied
 - `n_linkedin_employees`: number of employees with LinkedIn profile
