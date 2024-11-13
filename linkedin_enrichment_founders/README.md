@@ -23,7 +23,19 @@ The script iterates through each person, visits their profile and their sub-page
 After visiting each sub-page (experience, education, skills, awards etc.), the scraped data is extracted into a csv file.
 
 
-## Processing Scraped Data
+## Processing scraped data
 The **founders_processing_notebook_ipynb** script, processes the raw scraped data that was scraped in the previous step.
 
 This script iterates through each persons' scraped data and processes into the structured data columns.
+
+## Expected results
+
+## Ethical & legal considerations:
+When scraping data from LinkedIn, researchers must adhere to strict ethical and legal guidelines to ensure compliance with LinkedIn’s terms of service:
+- Limit Data to Publicly Available Information: Avoid scraping sensitive or private data. Ensure data is not used for commercial or third-party purposes.
+- Avoid Excessive Automation: Excessive or unauthorized scraping can lead to account restrictions, suspension, or legal consequences.
+- Data Anonymization and Security: Store all collected data securely and in anonymized form to protect user privacy.
+- Request Permission: Use Data Access for Researchers if you want to compose large-scale datasets that exceed manual profile validation.
+
+Evolving LinkedIn policy:
+- LinkedIn policies and available tools (e.g., API services) have changed over time. As of August 2023, Data Access for Researchers is the primary channel for accessing LinkedIn at large scale.
