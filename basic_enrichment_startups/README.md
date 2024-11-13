@@ -45,9 +45,18 @@ Before you are able to execute the code you need to prepare the following:
 ## Columns database required
 Minimum requirement `startup_website`.
 
+
 ## Expected Results
 The script downloads the required data directly from your database and uploads the fields that are created and enriched with data during the process. 
 
-After running this script successfully, you should have enriched your dataset in the following columns:
- `startup_website_status`, `startup_postal`, `startup_city`, `startup_street`, `startup_longitude`, `startup_latitude`, `startup_nuts3_code`
+After running both scripts successfully, you should have enriched your dataset in the following columns:
+ `startup_website_status`, `startup_postal`, `startup_city`, `startup_street`, `startup_longitude`, `startup_latitude`, `startup_nuts3_code`,  `startup_website_description`
+
+
+ ## Ethical & legal considerations:
+When scraping data from websites, researchers must adhere to the following ethical and legal standards:
+- Respect the 'robots.txt' file: The 'robots.txt' file specifies areas of the website that should or should not be accessed by automated tools. Researchers must ensure their scraping activities comply with these directives to align with the site owner’s preferences.
+- Collect only publicly accessible information: Data such as general descriptions, text content, or imprints (e.g., address information) can be collected as they are typically not subject to copyright.
+- Avoid scraping restricted or sensitive content, such as email addresses or other personal information.
+- Compliance with copyright and privacy laws: Ensure that scraping activities do not violate intellectual property or data protection laws.
 
