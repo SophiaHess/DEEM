@@ -29,6 +29,18 @@ The **founders_processing_notebook_ipynb** script, processes the raw scraped dat
 This script iterates through each persons' scraped data and processes into the structured data columns.
 
 ## Expected results
+The script will extract the following information for founders if available:
+- `affiliated_university_founder`: indicates which university the founder got the highest degree from
+- `highest_education_level`: Bachelor, Master, PhD, MBA, etc.
+- `study_time`: how long did the founder study
+- `work_experience`: duration of work experience, last job before founding a startup
+- `founding_experience`: first-time or serial
+- `current_company`: current employment in work experience
+- `job_title`: current job title
+- `field_of_study`: study field from highest degree
+- `certificates`: e.g., leadership certificates, project management certificates, scrum master, etc.
+- `social_engagement_in_voluntary work`: e.g., leadership certificates, project management certificates, scrum master, etc.
+
 
 ## Ethical & legal considerations:
 When scraping data from LinkedIn, researchers must adhere to strict ethical and legal guidelines to ensure compliance with LinkedIn’s terms of service:
