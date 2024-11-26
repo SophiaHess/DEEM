@@ -6,6 +6,9 @@ The enrichment of founders consists of two scripts that perform the following fu
 2. **Profile Data Processing**
    - process the raw linkedin data into structured data
    - e.g. total work experience time, highest level of education
+3. **Gender Detection for Founders**
+   - determine the gender of each founder using the Gender-API based on their first names
+   - after processing, verify the retrieved gender data for correctness and completeness to ensure reliable predictions
 
 To execute the scripts, make sure the recommended environment is activated, or you have installed all dependencies.
 
