@@ -10,9 +10,13 @@ PROFILE_ABOUT_SEEMORE_BUTTON = "//button[@class,'inline-show-more-text__button']
 
 PROFILE_ABOUT_DIV = "//div[@id='about']"
 
-DETAILS_SECTION = "//main[@class='scaffold-layout__main']/section"
+#DETAILS_SECTION = "//main[@class='scaffold-layout__main']/section" Darcy v
+DETAILS_SECTION = "//div[contains(@class, 'pvs-list__container')]" #perfect
 
-DETAILS_ITEMS = "./div[2]/div/div[1]/ul/li"
+
+#DETAILS_ITEMS = "./div[2]/div/div[1]/ul/li"
+DETAILS_ITEMS = ".//li[contains(@class, 'pvs-list__paged-list-item') and contains(@class, 'artdeco-list__item')]"
+
 
 SKILLS_ITEMS = "./div[2]/div[2]/div/div/div/ul/li"
 
