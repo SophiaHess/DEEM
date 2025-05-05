@@ -116,7 +116,8 @@ if __name__ == '__main__':
                 'industry_linkedin',
                 'about_us_linkedin',
                 'employee_list_linkedin',
-                'startup_address_raw_linkedin']
+                'startup_address_raw_linkedin',
+                'startup_follower_linkedin']
     dataframe[col_list] = dataframe.progress_apply(
         lambda x: use_linkedin_scraper(x, driver, error_file, return_columns=col_list), axis=1, result_type='expand')
 
@@ -137,7 +138,7 @@ if __name__ == '__main__':
     # convert employee list to string and truncate at char limit for upload to airtable
     dataframe['employee_list_linkedin'] = dataframe['employee_list_linkedin'].astype('str')
     dataframe['employee_list_linkedin'] = dataframe['employee_list_linkedin'].apply(
-        lambda x: (x[:99997] + '...') if len(x) > 100000 else x
+        lambda x: (x[:99000] + '...') if len(x) > 99000 else x
     )
 
     ################################################################
