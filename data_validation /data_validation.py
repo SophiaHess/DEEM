@@ -363,8 +363,6 @@ if __name__ == "__main__":
         dataframe.at[index, 'startup_name'] = startupName
         dataframe.at[index, 'startup_legal_status'] = legalStatus
         dataframe.at[index, 'startup_status'] = Startup_status
-      
     # Update the CSV file with the results.
     dataframe.to_csv("your-csv-file.csv",index=False,encoding="utf-8")     
-
 
