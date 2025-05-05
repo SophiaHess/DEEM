@@ -155,8 +155,16 @@ class Person(objects.Scraper):
             )
 
         
-                
-            self.name = root.find_element(By.CLASS_NAME, dom_selectors.PROFILE_NAME_H1).text.strip()
+               
+            #self.name = root.find_element(By.CLASS_NAME, dom_selectors.PROFILE_NAME_H1).text.strip()
+            try:
+                self.name = root.find_element(By.TAG_NAME, 'h1').text.strip()
+            except Exception:
+                # Try XPath as a fallback
+                self.name = WebDriverWait(root, 10).until(
+                            EC.presence_of_element_located((By.XPATH, "//h1[contains(@class, 'inline') and contains(@class, 'break-words')]"))
+                            ).text.strip()
+            
 
             base_url = clean_linkedin_url(driver.current_url) + '/'
 
@@ -210,13 +218,21 @@ class Person(objects.Scraper):
                 try:
                     # Load the person's experience page, append slugs to base url
                     driver.get(base_url + "details/experience")
+
                     
 
                     # Wait for the main container to load (with the list of experience elements)
                     experience_section = WebDriverWait(driver, self.__WAIT_FOR_ELEMENT_TIMEOUT).until(
                         EC.visibility_of_element_located((By.XPATH, dom_selectors.DETAILS_SECTION)))
+                    # print("Experience section found successfully.")
                 except:
                     experience_section = None
+                    #print("Saving page source for debugging...")
+                    # with open("debug_experience_section.html", "w", encoding="utf-8") as f:
+                    #     f.write(driver.page_source)  # Save the page for manual inspection
+                    
+
+
             else:
                 experience_section = None
 
@@ -229,6 +245,7 @@ class Person(objects.Scraper):
                 
                 # Redefine element to avoid StaleElementReferenceException
                 experience_section = driver.find_element(By.XPATH, dom_selectors.DETAILS_SECTION)
+                # print(experience_section.text) 
                 try:
                     # Get the list of each work experience
                     experience_items = WebDriverWait(experience_section, self.__WAIT_FOR_ELEMENT_TIMEOUT).until( 
