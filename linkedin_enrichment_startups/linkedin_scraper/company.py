@@ -215,8 +215,8 @@ class Company(Scraper):
             self.get_website()
         else:
             self.get_about_us_information()
-
-        if get_employees:
+        if get_employees and self.n_employees_linkedin:
+        # if get_employees:
             self.get_employees_information()
 
         if close_on_complete:
@@ -303,13 +303,28 @@ class Company(Scraper):
         # get company name
         self.name = WebDriverWait(self.driver, 3).until(
             EC.presence_of_element_located((By.XPATH, '//span[@dir="ltr"]'))).text.strip()
-        # Find the element containing the number of associated members
-        associated_members_element = self.driver.find_element(By.XPATH, "//dd[@class='t-black--light mb4 text-body-medium']/a/span")
+        
+        try:
+            elements = self.driver.find_elements(
+                By.XPATH,
+                "//dd[@class='t-black--light mb4 text-body-medium']/a/span"
+            )
+            if elements:
+                associated_members_text = elements[0].text
+                self.n_employees_linkedin = int(''.join(filter(str.isdigit, associated_members_text)))
+            else:
+                self.n_employees_linkedin = None
+        except Exception as e:
+            self.n_employees_linkedin = None
 
-        # Extract the text from the element
-        associated_members_text = associated_members_element.text
-        # Extract only the number from the text
-        self.n_employees_linkedin = int(''.join(filter(str.isdigit, associated_members_text)))
+
+        # # Find the element containing the number of associated members
+        # associated_members_element = self.driver.find_element(By.XPATH, "//dd[@class='t-black--light mb4 text-body-medium']/a/span")
+
+        # # Extract the text from the element
+        # associated_members_text = associated_members_element.text
+        # # Extract only the number from the text
+        # self.n_employees_linkedin = int(''.join(filter(str.isdigit, associated_members_text)))
 
 
         # iterate through labels and save corresponding values
