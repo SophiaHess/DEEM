@@ -2,6 +2,9 @@ import pandas as pd
 import requests
 import os
 import sys
+import math
+import numpy as np
+import re
 import csv
 from urllib.parse import urlparse
 import time
@@ -360,8 +363,6 @@ if __name__ == "__main__":
         dataframe.at[index, 'startup_name'] = startupName
         dataframe.at[index, 'startup_legal_status'] = legalStatus
         dataframe.at[index, 'startup_status'] = Startup_status
-      
     # Update the CSV file with the results.
     dataframe.to_csv("your-csv-file.csv",index=False,encoding="utf-8")     
-
 
